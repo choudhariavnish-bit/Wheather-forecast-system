@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Earth Portal</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Three.js 3D WebGL Engine -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <!-- 3D Interactive WebGL Earth Background Canvas -->
+    <canvas id="bg-3d-canvas"></canvas>
+
+    <!-- Main Viewport Container -->
+    <div class="app-viewport">
+
+        <!-- Top Header Navigation (No app name, clean location badge) -->
+        <header class="top-nav">
+            <div class="brand-logo">
+                <div class="logo-orb">
+                    <i class="fa-solid fa-globe"></i>
+                </div>
+            </div>
+            
+            <div class="location-badge-pill" id="location-pill">
+                <i class="fa-solid fa-location-dot pill-icon"></i>
+                <span id="pill-location-text">San Francisco, United States</span>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            
+            <!-- Glassmorphic 3D Interactive Location Card -->
+            <div class="login-card-wrapper">
+                <div class="login-card glass-panel" id="login-card">
+                    <div class="card-glow"></div>
+                    
+                    <div class="card-header">
+                        <h2>Select Location</h2>
+                        <p>Choose your Country, State, and City</p>
+                    </div>
+
+                    <form id="login-form" class="login-form">
+                        
+                        <!-- Location Input Section -->
+                        <div class="location-section">
+                            <div class="section-title">
+                                <i class="fa-solid fa-location-crosshairs"></i>
+                                <span>Location Coordinates</span>
+                                <button type="button" id="detect-location-btn" class="detect-btn">
+                                    <i class="fa-solid fa-compass"></i> Auto GPS
+                                </button>
+                            </div>
+
+                            <!-- Country Selector -->
+                            <div class="form-group">
+                                <label for="select-country">Country</label>
+                                <div class="select-wrapper">
+                                    <i class="fa-solid fa-globe input-icon"></i>
+                                    <select id="select-country" required>
+                                        <option value="" disabled selected>Select Country</option>
+                                    </select>
+                                    <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                                </div>
+                            </div>
+
+                            <!-- State & City Row -->
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <label for="select-state">State / Region</label>
+                                    <div class="select-wrapper">
+                                        <i class="fa-solid fa-map-location-dot input-icon"></i>
+                                        <select id="select-state" required disabled>
+                                            <option value="" disabled selected>Select State</option>
+                                        </select>
+                                        <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-6">
+                                    <label for="select-city">City</label>
+                                    <div class="select-wrapper">
+                                        <i class="fa-solid fa-city input-icon"></i>
+                                        <select id="select-city" required disabled>
+                                            <option value="" disabled selected>Select City</option>
+                                        </select>
+                                        <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Toast Alert Container -->
+                        <div id="toast-message" class="toast-alert hidden"></div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="submit-btn" id="submit-login-btn">
+                            <span class="btn-text">Confirm Location</span>
+                            <i class="fa-solid fa-arrow-right btn-icon"></i>
+                            <div class="btn-spinner hidden" id="login-spinner"></div>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Application Scripts -->
+    <script src="js/3d-engine.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

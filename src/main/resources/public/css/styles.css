@@ -1,0 +1,384 @@
+/* ==========================================================================
+   3D Earth Map Location Portal Design System (Left Login Box Layout)
+   ========================================================================== */
+
+:root {
+    --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+    /* Color Palette */
+    --bg-dark: #04060f;
+    --card-bg: rgba(15, 23, 42, 0.65);
+    --card-border: rgba(255, 255, 255, 0.14);
+
+    --primary-blue: #38bdf8;
+    --primary-indigo: #0284c7;
+    --primary-emerald: #10b981;
+    --primary-gradient: linear-gradient(135deg, #0284c7 0%, #38bdf8 50%, #10b981 100%);
+
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --text-dim: #64748b;
+
+    --input-bg: rgba(15, 23, 42, 0.75);
+    --input-border: rgba(255, 255, 255, 0.14);
+    --input-focus: #38bdf8;
+
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-full: 9999px;
+
+    --shadow-glass: 0 25px 60px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset & Base */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--bg-dark);
+    font-family: var(--font-body);
+    color: var(--text-main);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* 3D WebGL Background Canvas */
+#bg-3d-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Main Viewport Container */
+.app-viewport {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    padding: 24px 50px;
+}
+
+/* Glass Panel Component */
+.glass-panel {
+    background: var(--card-bg);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    border: 1px solid var(--card-border);
+    box-shadow: var(--shadow-glass);
+    border-radius: var(--radius-lg);
+}
+
+/* Header Navigation */
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+}
+
+.brand-logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-orb {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--primary-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 22px;
+    box-shadow: 0 4px 20px rgba(56, 189, 248, 0.4);
+}
+
+.location-badge-pill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 18px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-full);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.pill-icon {
+    color: var(--primary-blue);
+    font-size: 16px;
+}
+
+/* Main Content Area - Aligned to LEFT so 3D Earth is fully visible on RIGHT */
+.main-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-left: 20px;
+}
+
+/* 3D Glassmorphic Card on Left */
+.login-card-wrapper {
+    perspective: 1000px;
+    width: 100%;
+    max-width: 460px;
+}
+
+.login-card {
+    padding: 38px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+}
+
+.login-card:hover {
+    box-shadow: 0 35px 70px rgba(0, 0, 0, 0.7), 0 0 50px rgba(56, 189, 248, 0.25);
+}
+
+.card-glow {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--primary-gradient);
+    border-radius: calc(var(--radius-lg) + 2px);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.login-card:hover .card-glow {
+    opacity: 0.2;
+}
+
+.card-header {
+    margin-bottom: 24px;
+    text-align: left;
+}
+
+.card-header h2 {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 6px;
+}
+
+.card-header p {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+/* Forms & Inputs */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.location-section {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
+    padding: 18px;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--primary-blue);
+    margin-bottom: 14px;
+}
+
+.detect-btn {
+    margin-left: auto;
+    background: rgba(56, 189, 248, 0.15);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    color: var(--primary-blue);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.detect-btn:hover {
+    background: var(--primary-blue);
+    color: #fff;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-row {
+    display: flex;
+    gap: 12px;
+}
+
+.col-6 { flex: 1; }
+
+label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.select-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 14px;
+    color: var(--text-dim);
+    font-size: 14px;
+    pointer-events: none;
+    transition: var(--transition-smooth);
+}
+
+.arrow-icon {
+    position: absolute;
+    right: 14px;
+    color: var(--text-dim);
+    font-size: 12px;
+    pointer-events: none;
+}
+
+select {
+    width: 100%;
+    height: 46px;
+    padding: 0 36px 0 42px;
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: var(--radius-sm);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    font-size: 14px;
+    outline: none;
+    transition: var(--transition-smooth);
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+select option {
+    background-color: #0f172a;
+    color: #fff;
+}
+
+select:focus {
+    border-color: var(--input-focus);
+    box-shadow: 0 0 18px rgba(56, 189, 248, 0.3);
+    background: rgba(15, 23, 42, 0.9);
+}
+
+select:focus ~ .input-icon {
+    color: var(--primary-blue);
+}
+
+select:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* Submit Button */
+.submit-btn {
+    width: 100%;
+    height: 50px;
+    border-radius: var(--radius-md);
+    background: var(--primary-gradient);
+    border: none;
+    color: #ffffff;
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 6px 22px rgba(56, 189, 248, 0.35);
+    transition: var(--transition-smooth);
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(56, 189, 248, 0.55);
+}
+
+.submit-btn:active { transform: translateY(0); }
+
+/* Toast Alerts */
+.toast-alert {
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.toast-alert.success {
+    background: rgba(34, 197, 94, 0.15);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    color: #4ade80;
+}
+
+.toast-alert.error {
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #f87171;
+}
+
+.hidden { display: none !important; }
+
+/* Spinners */
+.btn-spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@media (max-width: 768px) {
+    .app-viewport { padding: 16px; }
+    .main-content { justify-content: center; padding-left: 0; }
+    .login-card { padding: 24px; }
+}
