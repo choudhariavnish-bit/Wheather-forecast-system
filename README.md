@@ -1,16 +1,16 @@
-# 🌍 Weather Forecast & 3D Location Portal
+# 📍 Weather Forecast & Location Portal
 
 [![Java](https://img.shields.io/badge/Java-21+-orange.svg)](https://www.oracle.com/java/)
 [![WebGL](https://img.shields.io/badge/WebGL-Three.js-blue.svg)](https://threejs.org/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-An interactive, high-performance **3D Earth Location & Weather Forecast Portal** built with a lightweight native Java backend (`com.sun.net.httpserver`) and a modern glassmorphic WebGL frontend powered by **Three.js**.
+An interactive, high-performance **Location & Weather Forecast Portal** built with a lightweight native Java backend (`com.sun.net.httpserver`) and a modern glassmorphic WebGL frontend powered by **Three.js**.
 
 ---
 
 ## ✨ Features
 
-- 🌐 **Interactive 3D WebGL Earth Engine**: Photorealistic 3D Earth globe with custom starfield, atmospheric lighting, and mouse-parallax interaction using Three.js.
+- ✨ **Interactive 3D WebGL Background**: Dynamic particle starfield background with mouse-parallax interaction using Three.js.
 - 📍 **Hierarchical Cascading Location Selector**: Dynamic selection flows from **Country ➔ State ➔ City**, pre-populated with major global regions (India, United States, United Kingdom, Canada, Japan, Germany, France).
 - 🛰️ **Auto-GPS Geolocation**: Detect user coordinates automatically via Browser Geolocation API and reverse-geocode to nearest city/region.
 - 💎 **Modern Glassmorphic UI**: Ultra-sleek glass panel design with dynamic 3D card tilt effects, custom scrollbars, and responsive typography (Outfit & Inter fonts).
@@ -47,7 +47,7 @@ Wheather-forecast-system/
 │               ├── css/
 │               │   └── styles.css           # Modern Glassmorphic styling & layout engine
 │               ├── js/
-│               │   ├── 3d-engine.js         # Three.js photorealistic 3D Earth canvas controller
+│               │   ├── 3d-engine.js         # Three.js starfield background canvas controller
 │               │   └── app.js               # Cascading dropdown logic, GPS & API handlers
 │               └── index.html               # Main viewport & interactive portal UI
 ├── bin/                                     # Compiled Java bytecodes (generated)

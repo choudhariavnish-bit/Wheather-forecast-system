@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Earth Portal</title>
+    <title>Location Portal</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,7 +20,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
-    <!-- 3D Interactive WebGL Earth Background Canvas -->
+    <!-- Background Canvas -->
     <canvas id="bg-3d-canvas"></canvas>
 
     <!-- Main Viewport Container -->
@@ -30,7 +30,7 @@
         <header class="top-nav">
             <div class="brand-logo">
                 <div class="logo-orb">
-                    <i class="fa-solid fa-globe"></i>
+                    <i class="fa-solid fa-location-dot"></i>
                 </div>
             </div>
             
@@ -69,7 +69,7 @@
                             <div class="form-group">
                                 <label for="select-country">Country</label>
                                 <div class="select-wrapper">
-                                    <i class="fa-solid fa-globe input-icon"></i>
+                                    <i class="fa-solid fa-flag input-icon"></i>
                                     <select id="select-country" required>
                                         <option value="" disabled selected>Select Country</option>
                                     </select>

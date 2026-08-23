@@ -1,9 +1,9 @@
 /**
- * Real NASA Satellite 3D Earth Globe Engine
- * Ultra-photorealistic 3D Earth Globe with soft lighting, crystal-clear satellite imagery, zero glare dots, and majestic ultra-slow rotation.
+ * Background 3D Engine
+ * Interactive particle starfield background canvas.
  */
 
-class RealEarth3DEngine {
+class Background3DEngine {
     constructor(canvasId) {
         this.canvas = document.getElementById(canvasId);
         this.mouseX = 0;
@@ -11,7 +11,6 @@ class RealEarth3DEngine {
 
         this.initThree();
         this.createStarfield();
-        this.loadRealEarthGlobe();
         this.createLighting();
 
         this.animate = this.animate.bind(this);
@@ -66,66 +65,9 @@ class RealEarth3DEngine {
         this.scene.add(this.starfield);
     }
 
-    loadRealEarthGlobe() {
-        this.earthGroup = new THREE.Group();
-        const textureLoader = new THREE.TextureLoader();
-
-        const earthMap = textureLoader.load('images/earth-satellite.jpg');
-        const cloudMap = textureLoader.load('images/earth-clouds.png');
-
-        // Large photorealistic Earth sphere radius
-        this.earthRadius = 14;
-        const geometry = new THREE.SphereGeometry(this.earthRadius, 64, 64);
-
-        // Soft, non-glare MeshStandardMaterial for crystal-clear satellite imagery
-        const earthMaterial = new THREE.MeshStandardMaterial({
-            map: earthMap,
-            roughness: 0.7,
-            metalness: 0.1
-        });
-
-        this.earthMesh = new THREE.Mesh(geometry, earthMaterial);
-        this.earthGroup.add(this.earthMesh);
-
-        // Volumetric Cloud Layer
-        const cloudGeometry = new THREE.SphereGeometry(this.earthRadius + 0.2, 64, 64);
-        const cloudMaterial = new THREE.MeshStandardMaterial({
-            map: cloudMap,
-            transparent: true,
-            opacity: 0.45,
-            blending: THREE.AdditiveBlending
-        });
-
-        this.cloudMesh = new THREE.Mesh(cloudGeometry, cloudMaterial);
-        this.earthGroup.add(this.cloudMesh);
-
-        // Subtle Atmospheric Blue Rim Glow
-        const atmosphereGeometry = new THREE.SphereGeometry(this.earthRadius + 0.8, 64, 64);
-        const atmosphereMaterial = new THREE.MeshBasicMaterial({
-            color: 0x38bdf8,
-            transparent: true,
-            opacity: 0.14,
-            blending: THREE.AdditiveBlending,
-            side: THREE.BackSide
-        });
-
-        this.atmosphereMesh = new THREE.Mesh(atmosphereGeometry, atmosphereMaterial);
-        this.earthGroup.add(this.atmosphereMesh);
-
-        // Position Earth framed on the RIGHT side of the screen
-        this.earthGroup.position.set(13, 0, -2);
-        this.scene.add(this.earthGroup);
-    }
-
     createLighting() {
-        // Soft uniform ambient light to eliminate harsh shadows and glare dots
         const ambientLight = new THREE.AmbientLight(0xffffff, 1.25);
         this.scene.add(ambientLight);
-
-        // Soft directional sunlight
-        const sunLight = new THREE.DirectionalLight(0xffffff, 0.75);
-        sunLight.position.set(40, 20, 30);
-        this.scene.add(sunLight);
     }
 
     onMouseMove(event) {
@@ -135,16 +77,6 @@ class RealEarth3DEngine {
 
     animate() {
         requestAnimationFrame(this.animate);
-
-        // Ultra-slow majestic Earth rotation (0.0008 rad/frame)
-        if (this.earthMesh) {
-            this.earthMesh.rotation.y += 0.0008;
-        }
-
-        // Ultra-slow cloud rotation
-        if (this.cloudMesh) {
-            this.cloudMesh.rotation.y += 0.0012;
-        }
 
         // Starfield drift
         if (this.starfield) {
@@ -167,5 +99,6 @@ class RealEarth3DEngine {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    window.realEarthEngine = new RealEarth3DEngine('bg-3d-canvas');
+    window.background3DEngine = new Background3DEngine('bg-3d-canvas');
 });
+
