@@ -1,6 +1,6 @@
 @echo off
 echo =========================================================
-echo   Compiling and Launching Nexus3D Location Portal (Java)
+echo   Compiling and Launching Location Portal (Java GUI)
 echo =========================================================
 
 if not exist "bin" mkdir bin
@@ -22,7 +22,7 @@ if %ERRORLEVEL% NEQ 0 (
     exit /b %ERRORLEVEL%
 )
 
-echo Starting Native Weather Forecast & Location GUI App...
+echo Starting Native Location Portal GUI App...
 "%JAVA_PATH%" -cp bin com.locationapp.LocationAppGUI
 
 pause
