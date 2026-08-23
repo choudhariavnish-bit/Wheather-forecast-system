@@ -50,7 +50,8 @@ public class LocationAppGUI extends JFrame {
     private void setupGlobalGraphics() {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
 
         // Customize Look & Feel defaults for dark menus
         UIManager.put("PopupMenu.border", BorderFactory.createLineBorder(new Color(51, 65, 85), 1));
@@ -226,7 +227,8 @@ public class LocationAppGUI extends JFrame {
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 8, 8)) {
             @Override
             protected void paintComponent(Graphics g) {
-                if (!isVisible()) return;
+                if (!isVisible())
+                    return;
                 Graphics2D g2 = (Graphics2D) g.create();
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -410,8 +412,10 @@ public class LocationAppGUI extends JFrame {
     private void parseLocationsJSON(String json) {
         try {
             String trimmed = json.trim();
-            if (trimmed.startsWith("{")) trimmed = trimmed.substring(1);
-            if (trimmed.endsWith("}")) trimmed = trimmed.substring(0, trimmed.length() - 1);
+            if (trimmed.startsWith("{"))
+                trimmed = trimmed.substring(1);
+            if (trimmed.endsWith("}"))
+                trimmed = trimmed.substring(0, trimmed.length() - 1);
 
             String[] countryBlocks = trimmed.split("\"\\s*:\\s*\\{");
             for (int i = 0; i < countryBlocks.length - 1; i++) {
@@ -430,15 +434,18 @@ public class LocationAppGUI extends JFrame {
                 String[] stateLines = blockContent.split("\\]");
 
                 for (String line : stateLines) {
-                    if (!line.contains(":")) continue;
+                    if (!line.contains(":"))
+                        continue;
                     String[] parts = line.split(":");
                     String stateName = parts[0].replaceAll("[^a-zA-Z\\s\\-Á-ÿ']", "").trim();
-                    if (stateName.isEmpty()) continue;
+                    if (stateName.isEmpty())
+                        continue;
 
                     String citiesRaw = parts[1].replaceAll("[\\[\\]\"]", "").trim();
                     List<String> cityList = new ArrayList<>();
                     for (String c : citiesRaw.split(",")) {
-                        if (!c.trim().isEmpty()) cityList.add(c.trim());
+                        if (!c.trim().isEmpty())
+                            cityList.add(c.trim());
                     }
                     stateMap.put(stateName, cityList);
                 }
@@ -510,7 +517,8 @@ public class LocationAppGUI extends JFrame {
             g2.fillRoundRect(0, 0, w, h, 28, 28);
 
             // Double Gradient Glowing Border
-            GradientPaint borderGradient = new GradientPaint(0, 0, new Color(56, 189, 248, 140), w, h, new Color(99, 102, 241, 100));
+            GradientPaint borderGradient = new GradientPaint(0, 0, new Color(56, 189, 248, 140), w, h,
+                    new Color(99, 102, 241, 100));
             g2.setPaint(borderGradient);
             g2.setStroke(new BasicStroke(1.5f));
             g2.drawRoundRect(1, 1, w - 2, h - 2, 28, 28);
@@ -624,7 +632,8 @@ public class LocationAppGUI extends JFrame {
 
     private static class CustomLuxuryListCellRenderer extends DefaultListCellRenderer {
         @Override
-        public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+        public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected,
+                boolean cellHasFocus) {
             JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
             label.setOpaque(true);
             label.setBackground(isSelected ? new Color(2, 132, 199) : new Color(15, 23, 42));
