@@ -22,7 +22,7 @@ if %ERRORLEVEL% NEQ 0 (
     exit /b %ERRORLEVEL%
 )
 
-echo Starting Nexus3D Server on http://localhost:8080...
-"%JAVA_PATH%" -cp bin com.locationapp.LocationLoginServer
+echo Starting Native Weather Forecast & Location GUI App...
+"%JAVA_PATH%" -cp bin com.locationapp.LocationAppGUI
 
 pause
