@@ -74,8 +74,7 @@ Simply double-click or run `run.bat` in your terminal:
 
 The script will:
 1. Compile all Java source files into the `bin` directory.
-2. Launch the HTTP server on port `8080`.
-3. Open your browser and navigate to `http://localhost:8080`.
+2. Launch the native Java Desktop GUI Application window.
 
 ### Manual Build & Run
 
@@ -87,13 +86,10 @@ If you prefer building manually from terminal:
    javac -d bin src/main/java/com/locationapp/*.java
    ```
 
-2. **Run Server**:
+2. **Run Desktop GUI App**:
    ```bash
-   java -cp bin com.locationapp.LocationLoginServer
+   java -cp bin com.locationapp.LocationAppGUI
    ```
-
-3. **Access the Portal**:
-   Open [http://localhost:8080](http://localhost:8080) in your web browser.
 
 ---
 

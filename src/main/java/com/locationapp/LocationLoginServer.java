@@ -28,8 +28,7 @@ public class LocationLoginServer {
 
         server.setExecutor(null);
         System.out.println("==========================================================");
-        System.out.println(" 🌟 3D Location Portal Server Started (Port: " + PORT + ") 🌟");
-        System.out.println(" Open in browser: http://localhost:" + PORT);
+        System.out.println(" 🌟 Location Portal Server Started (Port: " + PORT + ") 🌟");
         System.out.println("==========================================================");
         server.start();
     }
